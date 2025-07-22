@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { QRCodeSVG } from 'qrcode.react';
-import { Skeleton } from '@/components/ui/skeleton';
+import { useEffect, useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
+
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface QRCodeProps {
   value: string;
@@ -21,15 +22,12 @@ export default function QRCodeComponent({ value, size = 256 }: QRCodeProps) {
   }
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-sm">
-      <QRCodeSVG 
-        value={value} 
-        size={size} 
-        level="H" 
-        includeMargin={true}
-        bgColor="#FFFFFF"
-        fgColor="#000000"
-      />
-    </div>
+    <QRCodeSVG
+      value={value}
+      size={size}
+      level="H"
+      bgColor="var(--card)"
+      fgColor="#000000"
+    />
   );
 }
