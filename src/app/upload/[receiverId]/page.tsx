@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import FileUpload from "@/components/file-upload";
+import FileUpload from "@/components/features/upload";
 
 const UploadPage = async ({
   params,
@@ -9,7 +9,7 @@ const UploadPage = async ({
   const { receiverId } = await params;
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-16">
+    <div className="container mx-auto min-h-[calc(100dvh-8rem)] max-w-4xl px-4 py-16">
       <Card>
         <CardContent>
           <FileUpload receiverId={receiverId} />

@@ -7,6 +7,7 @@ export type TFile = {
   type: string;
   url: string;
   created_at: string;
+  is_deleted?: boolean;
 };
 
 export type FileMetadata = {

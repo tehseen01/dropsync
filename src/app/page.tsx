@@ -1,39 +1,7 @@
-import { Suspense } from "react";
-
-import { createClient } from "@/lib/supabase/server";
 import { HomePage } from "@/components/features";
 import FilesList from "@/components/features/home/files-list";
 
-const getCurrentUserFiles = async () => {
-  const supabase = await createClient();
-  try {
-    const { data: user, error: userError } = await supabase.auth.getUser();
-    if (!user || userError) {
-      console.error("Error fetching user:", userError);
-      return [];
-    }
-
-    const userId = user.user.id;
-
-    const { data, error } = await supabase
-      .from("files")
-      .select("*")
-      .or(`receiver_id.eq.${userId},user_id.eq.${userId}`);
-
-    if (!data || error) {
-      console.error("Error fetching files:", error);
-      return [];
-    }
-    return data || [];
-  } catch (error) {
-    console.error("Unexpected error getCurrentUserFiles:", error);
-    return [];
-  }
-};
-
 const Home = async () => {
-  const files = await getCurrentUserFiles();
-
   return (
     <main className="min-h-[calc(100dvh-8rem)]">
       <section className="w-full pt-12 md:pt-16 lg:pt-18 xl:pt-20">
@@ -51,10 +19,10 @@ const Home = async () => {
           </div>
         </div>
       </section>
+
       <HomePage />
-      <Suspense fallback={<div className="text-center">Loading files...</div>}>
-        {files && files.length > 0 && <FilesList files={files} />}
-      </Suspense>
+      <FilesList />
+
       {/* Add any additional components or sections here */}
     </main>
   );

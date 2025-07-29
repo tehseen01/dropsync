@@ -15,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import QRCodeComponent from "@/components/qr-code";
+import QRCodeComponent from "@/components/shared/qr-code";
 
 export function HomePage() {
   const [mounted, setMounted] = useState(false);

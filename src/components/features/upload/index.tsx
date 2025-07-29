@@ -13,8 +13,7 @@ import {
 import { cn, formatBytes } from "@/lib/utils";
 import { useFileUpload } from "@/hooks/use-file-upload";
 import { Button } from "@/components/ui/button";
-
-import { FilePreview } from "./shared";
+import { FilePreview } from "@/components/shared";
 
 interface fileUploadProps {
   receiverId: string;
@@ -93,9 +92,10 @@ export default function FileUpload({ receiverId }: fileUploadProps) {
                 <div
                   key={file.id}
                   className={cn(
-                    "bg-background flex items-center justify-between gap-2 rounded-lg border p-2 pe-3",
+                    "bg-background flex items-center justify-between gap-2 rounded-lg border p-2 pe-3 transition-opacity",
                     file.status === "error" && "border-red-500 bg-red-50",
-                    file.status === "success" && "border-green-500 bg-green-50",
+                    file.status === "success" &&
+                      "animate-fade-down animate-once animate-reverse animate-duration-500 border-green-500 bg-green-50",
                     file.status === "uploading" && "border-blue-500 bg-blue-50",
                   )}
                 >
